@@ -1,6 +1,6 @@
-# Context Engine
+# ContextEngine
 
-Context Engine helps you create and manage documentation-driven development workflows. Documentations are funneled for efficient code generation and high maintainability through the Model Context Protocol (MCP).
+ContextEngine helps you create and manage documentation-driven development workflows. Documentations are funneled for efficient code generation and high maintainability through the Model Context Protocol (MCP).
 
 ## Features
 

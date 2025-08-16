@@ -1,14 +1,12 @@
 from fastmcp import FastMCP
+from fastmcp.tools import Tool
+from .tools.greet import greet
+from .tools.context import init_context_engine
 
 mcp = FastMCP("Context Engine")
 
-
-@mcp.tool
-def greet(name: str) -> str:
-    """
-    Returns a greeting to the given name.
-    """
-    return f"Hello, {name}!"
+mcp.add_tool(Tool.from_function(greet))
+mcp.add_tool(Tool.from_function(init_context_engine))
 
 
 def main():

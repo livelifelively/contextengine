@@ -1,0 +1,115 @@
+{
+  "nodes": [
+    {
+      "id": "context_engine.1.document_objective",
+      "title": "Document Objective",
+      "content": [
+        "This document establishes the **Documentation Driven Development (DDD) methodology** for software development projects. It defines the principles, structure, and implementation approach where **documentation drives all development decisions** and serves as the single source of truth for the entire project.",
+        "",
+        "**Terminology Note**: Throughout this document, \"Documentation Driven Development\", \"Documentation-Driven Development\", and \"Documentation-First\" all refer to the same core methodology where documentation creation precedes and drives all implementation activities.",
+        "",
+        "**Primary Goals:**",
+        "",
+        "- Establish documentation as the primary driver of all development activities",
+        "- Define a flexible hierarchical structure using two document types: Plans and Tasks",
+        "- Provide practical templates and guidelines for documentation-first implementation",
+        "- Enable efficient knowledge sharing through comprehensive, authoritative documentation"
+      ],
+      "metadata": {
+        "section_type": "introduction",
+        "importance": "foundational",
+        "target_audience": "all developers"
+      },
+      "relationships": {
+        "prerequisites": [],
+        "leads_to": [
+          "context_engine.2.core_methodology_principles",
+          "context_engine.3.contextengine_integration"
+        ],
+        "related_concepts": [
+          "documentation",
+          "methodology",
+          "development_process"
+        ],
+        "depends_on": []
+      },
+      "semantic_tags": [
+        "introduction",
+        "purpose",
+        "goals",
+        "methodology_overview",
+        "documentation_foundation"
+      ],
+      "composition_rules": {
+        "when_to_include": [
+          "new user introduction",
+          "methodology overview needed",
+          "establishing foundation"
+        ],
+        "priority": "high",
+        "max_occurrences": 1
+      }
+    },
+    {
+      "id": "context_engine.3.contextengine_integration",
+      "title": "ContextEngine Integration",
+      "content": [
+        "**ContextEngine** is the premier implementation of Documentation Driven Development methodology. It provides the tools, frameworks, and infrastructure needed to execute DDD principles effectively across any software development project. This document serves as both the methodology definition and the implementation guide for ContextEngine-powered development workflows.",
+        "",
+        "**Key ContextEngine Capabilities:**",
+        "",
+        "- **Intelligent Documentation Parsing**: Advanced markdown parsing with semantic understanding",
+        "- **Hierarchical Context Management**: Automated context inheritance and validation across Plan/Task hierarchies",
+        "- **Schema-Driven Validation**: Built-in validation against the DDD documentation schema",
+        "- **Implementation Readiness Gates**: Automated checks ensuring documentation completeness before code generation",
+        "- **LLM-Native Workflows**: Optimized for AI-assisted development with clear context boundaries"
+      ],
+      "metadata": {
+        "section_type": "product_definition",
+        "importance": "core",
+        "target_audience": "all developers"
+      },
+      "relationships": {
+        "prerequisites": [
+          "context_engine.1.document_objective"
+        ],
+        "leads_to": [
+          "context_engine.2.core_methodology_principles",
+          "context_engine.4.workflow_implementation"
+        ],
+        "related_concepts": [
+          "contextengine",
+          "tools",
+          "frameworks",
+          "infrastructure",
+          "automation"
+        ],
+        "depends_on": []
+      },
+      "semantic_tags": [
+        "product_definition",
+        "capabilities",
+        "tools",
+        "automation",
+        "implementation_guide"
+      ],
+      "composition_rules": {
+        "when_to_include": [
+          "understanding contextengine capabilities",
+          "tool selection discussion",
+          "implementation planning",
+          "automation needs"
+        ],
+        "priority": "high",
+        "max_occurrences": 1
+      }
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "description": "Knowledge Graph Nodes for Context Engine Methodology",
+    "total_nodes": 2,
+    "created": "2025-01-16",
+    "schema_version": "1.0"
+  }
+}
