@@ -1,4 +1,4 @@
-from context_engine.application.service import create_greeting
+from ..application.service import create_greeting
 
 
 def greet(name: str) -> str:
