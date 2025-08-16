@@ -1,0 +1,35 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "context-engine"
+version = "0.1.0"
+description = "context engine helps you create and manage documentation driven development workflows. Documentations are funnelled for effecient code generation and high maintainability."
+authors = [
+    {name = "ashish rana", email = "dev.livelifelively@gmail.com"},
+]
+requires-python = ">=3.12"
+dependencies = [
+    "fastmcp",
+]
+
+[project.scripts]
+context-engine = "context_engine.main:main"
+[tool.hatch.build.targets.wheel]
+packages = ["src/context_engine"]
+
+[tool.uv]
+dev-dependencies = [
+    "pytest",
+    "pytest-asyncio",
+    "ruff",
+    "pyright",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
