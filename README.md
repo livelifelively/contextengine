@@ -78,6 +78,34 @@ uv run python -m context_engine.main
 
 The server will start and listen for MCP connections.
 
+## 🐳 Docker Development Environment
+
+### Quick Start with Docker
+
+```bash
+# Start all services (Dgraph Zero, Alpha, Ratel, App)
+docker-compose up -d
+
+# Verify services are running
+docker-compose ps
+
+# Check Dgraph health
+curl -s http://localhost:8080/health
+```
+
+### Access Interfaces
+- **Ratel GUI**: http://localhost:8000
+- **GraphQL API**: http://localhost:8080/graphql
+- **Dgraph Admin**: http://localhost:8080/admin
+
+### Stop Services
+```bash
+docker-compose down
+```
+
+### Complete Setup Guide
+For detailed Docker setup, testing, and troubleshooting commands, see **[docs/Setup_Guide.md](docs/Setup_Guide.md)**.
+
 ## Connecting to MCP Clients
 
 ### Claude Desktop
