@@ -1,115 +1,84 @@
 """
-Context Engine Tool - Knowledge Graph Integration
-Provides the init_context_engine tool using knowledge graph composition
+Context Engine Tool - MCP Interface
+Provides the init_context_engine tool for MCP clients
 """
-
-import json
-from pathlib import Path
-from typing import List
-from pydantic import BaseModel, Field
-
-
-# Minimal schema definition for this module
-class KnowledgeGraphNode(BaseModel):
-    """A node in the knowledge graph representing a section of methodology"""
-    id: str = Field(..., description="Unique identifier for the node")
-    title: str = Field(..., description="Title of the section")
-    content: List[str] = Field(..., description="The actual content of the section as array of lines")
-    metadata: dict = Field(..., description="Metadata about the node")
-    relationships: dict = Field(..., description="Relationships to other nodes")
-    semantic_tags: List[str] = Field(..., description="Semantic tags for search and composition")
-    composition_rules: dict = Field(..., description="Rules for context composition")
-
-
-def load_knowledge_graph_nodes() -> List[KnowledgeGraphNode]:
-    """Load knowledge graph nodes from JSON file"""
-    try:
-        current_dir = Path(__file__).parent.parent
-        json_file_path = current_dir / "application" / "knowledge_graph_nodes.json"
-        
-        with open(json_file_path, 'r', encoding='utf-8') as f:
-            data = json.load(f)
-        
-        nodes = []
-        for node_data in data.get("nodes", []):
-            node = KnowledgeGraphNode(**node_data)
-            nodes.append(node)
-        
-        return nodes
-        
-    except Exception as e:
-        print(f"Error loading knowledge graph nodes: {e}")
-        return []
-
-
-def compose_context_from_knowledge_graph() -> str:
-    """
-    Compose context from knowledge graph nodes for initialization
-    Returns the full methodology context using knowledge graph composition
-    """
-    # Load all nodes
-    nodes = load_knowledge_graph_nodes()
-    if not nodes:
-        return "Error: No knowledge graph nodes found. Please check the knowledge_graph_nodes.json file."
-    
-    # For initialization, include all nodes in order of importance
-    sorted_nodes = sorted(nodes, key=lambda x: (
-        _get_priority_score(x.composition_rules.get("priority", "low")),
-        _get_importance_score(x.metadata.get("importance", "supporting"))
-    ), reverse=True)
-    
-    # Compose the full context - ONLY content from nodes
-    composed_parts = []
-    
-    # Add each node's content directly
-    for node in sorted_nodes:
-        for line in node.content:
-            composed_parts.append(line)
-        composed_parts.append("")  # Add spacing between nodes
-    
-    return "\n".join(composed_parts)
-
-
-def _get_priority_score(priority: str) -> int:
-    """Convert priority string to numeric score"""
-    priority_scores = {
-        "high": 3,
-        "medium": 2,
-        "low": 1
-    }
-    return priority_scores.get(priority.lower(), 1)
-
-
-def _get_importance_score(importance: str) -> int:
-    """Convert importance string to numeric score"""
-    importance_scores = {
-        "foundational": 3,
-        "core": 3,
-        "operational": 2,
-        "supporting": 1
-    }
-    return importance_scores.get(importance.lower(), 1)
 
 
 def init_context_engine(random_string: str = "") -> str:
     """
-    Initializes the conversation by providing the full context of the Context Engine's principles and methodology.
-    Now uses knowledge graph composition instead of static file loading.
+    Initializes the conversation by providing the context of the Context Engine's principles and methodology.
     
     Args:
         random_string: Dummy parameter for no-parameter tools
         
     Returns:
-        String containing the composed methodology context from knowledge graph nodes
+        String containing the methodology context
     """
     try:
-        # Use knowledge graph composition
-        context = compose_context_from_knowledge_graph()
+        context = """
+# Context Engine - Documentation-Driven Development Workflow
+
+## Overview
+Context Engine helps you create and manage documentation-driven development workflows. 
+Documentations are funneled for efficient code generation and high maintainability through the Model Context Protocol (MCP).
+
+## Core Principles
+
+### 1. Documentation-First Approach
+- All development decisions should be documented before implementation
+- Documentation serves as the single source of truth
+- Code should reflect and implement documented requirements
+
+### 2. MCP Integration
+- Built on FastMCP for high-performance Model Context Protocol server
+- Extensible tool system for AI interactions
+- Seamless integration with MCP-compatible clients
+
+### 3. Maintainable Workflows
+- Focus on maintainable, well-documented development workflows
+- Robust testing with comprehensive test suites
+- Developer tools for linting, formatting, and type checking
+
+## Available Tools
+
+### greet
+A simple greeting tool that demonstrates the MCP integration.
+- **Parameters**: name (string) - The name to greet
+- **Example**: `{"name": "World"}` returns `"Hello, World!"`
+
+### init_context_engine
+This tool that provides the full context of Context Engine principles and methodology.
+- **Parameters**: random_string (string) - Dummy parameter for no-parameter tools
+- **Returns**: Complete methodology context
+
+## Development Workflow
+
+1. **Document First**: Write clear documentation of what needs to be built
+2. **Plan Architecture**: Design the system architecture based on documentation
+3. **Implement**: Write code that implements the documented requirements
+4. **Test**: Ensure code matches documented behavior
+5. **Maintain**: Keep documentation and code in sync
+
+## Best Practices
+
+- Always document before coding
+- Use clear, concise language in documentation
+- Keep documentation close to code
+- Regular reviews and updates of documentation
+- Test documentation accuracy through implementation
+
+## MCP Client Integration
+
+This Context Engine MCP server can be integrated with:
+- Claude Desktop
+- Cline (VS Code Extension)
+- Cursor
+- Any MCP-compatible client
+
+The server provides tools that help maintain documentation-driven development workflows and ensure high code quality through proper documentation practices.
+"""
         
-        if context.startswith("Error:"):
-            return f"❌ Context Engine Initialization Failed:\n{context}"
-        
-        return context
+        return context.strip()
         
     except Exception as e:
         return f"❌ Error initializing Context Engine: {str(e)}"

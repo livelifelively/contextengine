@@ -1,6 +1,6 @@
-# ContextEngine
+# Context Engine MCP Server
 
-ContextEngine helps you create and manage documentation-driven development workflows. Documentations are funneled for efficient code generation and high maintainability through the Model Context Protocol (MCP).
+Context Engine MCP Server provides tools for documentation-driven development workflows through the Model Context Protocol (MCP). This lightweight server focuses on helping developers maintain high-quality documentation practices.
 
 ## Features
 
@@ -78,33 +78,7 @@ uv run python -m context_engine.main
 
 The server will start and listen for MCP connections.
 
-## 🐳 Docker Development Environment
 
-### Quick Start with Docker
-
-```bash
-# Start all services (Dgraph Zero, Alpha, Ratel, App)
-docker-compose up -d
-
-# Verify services are running
-docker-compose ps
-
-# Check Dgraph health
-curl -s http://localhost:8080/health
-```
-
-### Access Interfaces
-- **Ratel GUI**: http://localhost:8000
-- **GraphQL API**: http://localhost:8080/graphql
-- **Dgraph Admin**: http://localhost:8080/admin
-
-### Stop Services
-```bash
-docker-compose down
-```
-
-### Complete Setup Guide
-For detailed Docker setup, testing, and troubleshooting commands, see **[docs/Setup_Guide.md](docs/Setup_Guide.md)**.
 
 ## Connecting to MCP Clients
 
@@ -206,15 +180,17 @@ A simple greeting tool that demonstrates the MCP integration.
 ## Project Structure
 
 ```
-context-engine/
+context-engine-mcp/
 ├── src/
 │   └── context_engine/
-│       └── main.py          # Main MCP server
+│       ├── main.py          # Main MCP server
+│       └── tools/
+│           ├── greet.py     # Greeting tool
+│           └── context.py   # Context engine tool
 ├── tests/
 │   ├── __init__.py
 │   ├── conftest.py          # Test configuration
 │   └── test_main.py         # Test suite
-├── docs/                    # Documentation
 ├── pyproject.toml           # Project configuration
 ├── justfile                 # Task automation
 ├── uv.lock                  # Dependency lock file
